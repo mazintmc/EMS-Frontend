@@ -1,0 +1,32 @@
+<div class="container">
+    @if(defName !== null && defName !== '')  {<div class="heading">Welcome {{ defName}}</div>}
+
+    {{message()}}
+    <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" novalidate>
+        <div class="form-group">
+            <label for="defName">Username:</label>
+            <input type="text" id="defName" name="defName" [(ngModel)]="defName" required class="form-control">
+            @if (!userForm.controls['defName']?.valid && userForm.controls['defName']?.touched) {
+                <div class="alert alert-danger">Username is required.</div>
+            }
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" ngModel required minlength="6" class="form-control">
+            @if (!userForm.controls['password']?.valid && userForm.controls['password']?.touched) {
+                <div class="alert alert-danger">
+                    Password is required and must be at least 6 characters long.
+                </div>
+            }
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Submit</button>
+    </form>
+
+    @if (submissionResult) {
+        <div class="submission-result">
+            <h3>Form Submitted Successfully!</h3>
+            <pre>{{ submissionResult | json }}</pre>
+        </div>
+    }
+</div>
