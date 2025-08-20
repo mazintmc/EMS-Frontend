@@ -1,0 +1,74 @@
+.navbar {
+  height: 80px;
+  background: #2d2f36; // slightly lighter than sidebar if sidebar is #1e1f23
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  border-bottom: 1px solid #3d3f47;
+
+  .navbar-left {
+    display: flex;
+    align-items: center;
+
+    .navbar-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+  }
+
+  .navbar-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+
+    .search-box {
+      width: 300px;
+      max-width: 100%;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      font-size: 0.9rem;
+      background: #3b3e45;
+      color: #fff;
+
+      &::placeholder {
+        color: #aaa;
+      }
+    }
+  }
+
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .icon-btn {
+      background: none;
+      border: none;
+      color: inherit;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+
+      img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 2px solid #555;
+      }
+
+      .username {
+        font-weight: 500;
+      }
+    }
+  }
+}

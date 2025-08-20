@@ -8,5 +8,4 @@ import { LoginForm } from '../../components/login-form/login-form';
   styleUrl: './login.scss'
 })
 export class Login {
-  parentMessage = signal("Text");
 }

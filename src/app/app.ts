@@ -9,7 +9,4 @@ import { Login } from './features/login/login';
   styleUrl: './app.scss'
 })
 export class App {
-  constructor() {
-    console.log((Login as any).ɵcmp.standalone);
-  }
 }

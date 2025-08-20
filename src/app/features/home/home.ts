@@ -14,7 +14,7 @@ export class Home implements OnInit {
   ngOnInit() {
     this.authService.getUser().subscribe({
       next: (user) => {
-        console.log('Database connected:', user);
+        console.log('User is logged in:', user);
       },
       error: (err) => {
         console.error('Error fetching user data:', err);

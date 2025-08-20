@@ -1,8 +1,8 @@
 <div class="container">
     @if(defName !== null && defName !== '')  {<div class="heading">Welcome {{ defName}}</div>}
 
-    {{message()}}
     <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" novalidate>
+        <hr>
         <div class="form-group">
             <label for="defName">Username:</label>
             <input type="text" id="defName" name="defName" [(ngModel)]="defName" required class="form-control">
@@ -21,6 +21,11 @@
             }
         </div>
         <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Submit</button>
+        <ng-template #infoMessage>
+    <div class="alert alert-info">
+        Please fill out the form to log in.
+    </div>
+</ng-template>
     </form>
 
     @if (submissionResult) {

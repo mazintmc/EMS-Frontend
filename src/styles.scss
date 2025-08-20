@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+body.sidebar-collapsed .sidebar {
+  width: 75px;
+}
+
+body.sidebar-collapsed .main {
+  margin-left: 70px !important
+}
+
+
+body.sidebar-collapsed .sidebar .app-name,
+body.sidebar-collapsed .sidebar .user-info,
+body.sidebar-collapsed .sidebar .nav-menu span,
+body.sidebar-collapsed .sidebar .badge {
+  display: none;
+}
+
+body.sidebar-collapsed .sidebar .nav-menu a::after {
+  display: none;
+}
+
+body.sidebar-collapsed .sidebar .user-profile {
+  justify-content: center;
+}

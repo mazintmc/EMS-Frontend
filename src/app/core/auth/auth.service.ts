@@ -7,21 +7,23 @@ import { tap } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  
   private baseUrl = 'http://localhost:8080';
+  private userData: any = null;
 
-  constructor( private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-private userData: any = null;
-getUser(): Observable<any> {
-  return this.http.get(`${this.baseUrl}/api/auth/test`, {
-    responseType: 'text'
-  }).pipe(
-    tap((user) => this.setUser(user))
-    
-  );
-}
+  login(username: string, password: string): Observable<any> {
+    const payload = { username, password };
+    return this.http.post(`${this.baseUrl}/api/auth/login`, payload, {
+      responseType: 'text',
+    });
+  }
 
+  getUser(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/employees/me`).pipe(
+      tap((user) => this.setUser(user))
+    );
+  }
 
   isLoggedIn(): boolean {
     return this.userData !== null;
@@ -33,5 +35,13 @@ getUser(): Observable<any> {
 
   setUser(data: any) {
     this.userData = data;
+  }
+
+  logout(): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}/api/auth/logout`, {}).pipe(
+      tap(() => {
+        this.userData = null;
+      })
+    );  
   }
 }

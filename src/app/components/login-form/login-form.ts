@@ -1,7 +1,10 @@
-import {input, Component, effect } from '@angular/core';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { JsonPipe } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../core/auth/auth.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'login-form',
   imports: [JsonPipe, CommonModule, FormsModule],
@@ -10,26 +13,27 @@ import { FormsModule } from '@angular/forms';
 })
 export class LoginForm {
   submissionResult: any = null;
+  defName: string | null = null;
 
-   message = input<string>();
+  @ViewChild('infoMessage', { read: TemplateRef }) infoMessage: TemplateRef<unknown> | undefined;
 
-   constructor() {
-    effect(() => {
-      console.log("The message is: ", this.message());
-    })
-   }
+  constructor(private authService: AuthService, private router: Router) {}
 
-  defName: any = null;
 
   onSubmit(form: any) {
     if (form.valid) {
-      this.submissionResult = form.value;
-      const payload = {
-        Username: form.value.defName,
-        passwordHash: form.value.password
-      }
-      console.log('Form submitted successfully:', payload);
+      this.authService.login(form.value.defName, form.value.password).subscribe({
+        next: (res) => {
+          console.log('Login success:', res);
+          this.submissionResult = res;
+          this.router.navigate(['/dashboard']);
+
+        },
+        error: (err) => {
+          console.error('Login failed:', err);
+          this.submissionResult = { error: 'Login failed' };
+        }
+      });
     }
   }
-
 }
