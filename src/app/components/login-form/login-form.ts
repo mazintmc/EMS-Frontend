@@ -1,4 +1,4 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { JsonPipe } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -15,7 +15,6 @@ export class LoginForm {
   submissionResult: any = null;
   defName: string | null = null;
 
-  @ViewChild('infoMessage', { read: TemplateRef }) infoMessage: TemplateRef<unknown> | undefined;
 
   constructor(private authService: AuthService, private router: Router) {}
 

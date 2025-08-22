@@ -1,0 +1,33 @@
+@if (loading) {
+  <div class="loading">Loading...</div>
+}
+
+@if (!loading && status) {
+  <div class="widget-container">
+    <div class="status-section">
+      <p class="status-message">{{ status.message }}</p>
+    </div>
+
+    @if (status.status === 'NO_ATTENDANCE_RECORD') {
+      <div class="clocking-container">
+        <button (click)="clockIn()" class="clocking-button clock-in">
+            Clock In
+        </button>
+      </div>
+    }
+
+    @if (status.status === 'CLOCKED_IN') {
+      <div class="clocking-container">
+        <button (click)="clockOut()" class="clocking-button clock-out">
+            Clock Out
+        </button>
+      </div>
+    }
+
+    @if (status.status === 'CLOCKED_IN_AND_OUT') {
+      <p class="status-message finished">
+          You have already clocked in and out today.
+      </p>
+    }
+  </div>
+}

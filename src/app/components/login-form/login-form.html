@@ -4,28 +4,24 @@
     <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" novalidate>
         <hr>
         <div class="form-group">
-            <label for="defName">Username:</label>
-            <input type="text" id="defName" name="defName" [(ngModel)]="defName" required class="form-control">
-            @if (!userForm.controls['defName']?.valid && userForm.controls['defName']?.touched) {
-                <div class="alert alert-danger">Username is required.</div>
-            }
-        </div>
+        <label for="defName">Username:</label>
+        <input type="text" id="defName" name="defName" [(ngModel)]="defName" required class="form-control" #defNameCtrl="ngModel">
+        @if (defNameCtrl.invalid && defNameCtrl.touched) {
+    <div class="alert alert-danger">Username is required.</div>
+    }
+</div>
 
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" ngModel required minlength="6" class="form-control">
-            @if (!userForm.controls['password']?.valid && userForm.controls['password']?.touched) {
-                <div class="alert alert-danger">
-                    Password is required and must be at least 6 characters long.
-                </div>
-            }
-        </div>
-        <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Submit</button>
-        <ng-template #infoMessage>
-    <div class="alert alert-info">
-        Please fill out the form to log in.
+<div class="form-group">
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" ngModel required minlength="6" class="form-control" #passwordCtrl="ngModel">
+    @if (passwordCtrl.invalid && passwordCtrl.touched) {
+    <div class="alert alert-danger">
+        Password is required and must be at least 6 characters long.
     </div>
-</ng-template>
+    }
+</div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Submit</button>
     </form>
 
     @if (submissionResult) {
