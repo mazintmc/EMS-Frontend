@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { AuthService } from '../../core/auth/auth.service';
 import { FeatureWrapper } from '../../components/feature-wrapper/feature-wrapper';
-import { AttendanceWidgetComponent } from '../attendance/components/attendance-widget.component/attendance-widget.component';
+import { AttendanceWidgetComponent } from './components/attendance-widget.component/attendance-widget.component';
 
 @Component({
   selector: 'app-dashboard',

@@ -6,6 +6,8 @@ import { Home } from './features/home/home';
 import { rootRedirectGuard } from './core/guards/root-redirect-guard';
 import { authGuard } from "../app/core/guards/auth.guard"
 import { LayoutComponent } from './core/layout/layout';
+import { Attendance } from './features/attendance/attendance';
+import { Settings } from './features/settings/settings';
 
 export const routes: Routes = [
   {
@@ -21,7 +23,9 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
       {path: 'dashboard', component: Dashboard},
-      {path: 'employees', component: Employees}
+      {path: 'employees', component: Employees},
+      {path: 'attendance', component: Attendance},
+      {path: 'settings', component: Settings}
     ]
   }
 ];

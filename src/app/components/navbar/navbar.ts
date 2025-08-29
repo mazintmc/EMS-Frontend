@@ -11,6 +11,7 @@ import { signal } from '@angular/core';
 export class Navbar implements OnInit {
 
    userName = signal('User');
+   userImg = signal('/default-user.webp');
   constructor(private authService: AuthService) {}
 
     ngOnInit() {
@@ -18,6 +19,11 @@ export class Navbar implements OnInit {
       next: (user: any) => {
         console.log("User is: ", user.roles);
         this.userName.set(user.name);
+        if (user.media) {
+          console.log("This runs");
+          console.log("Media: ", user.media);
+          this.userImg.set(`http://localhost:8080${user.media}`);
+        }
       },
       error: () => {
         this.userName.set('User');

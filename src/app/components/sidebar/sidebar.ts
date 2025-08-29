@@ -12,6 +12,7 @@ import { AuthService } from '../../core/auth/auth.service';
 export class Sidebar implements OnInit {
   isCollapsed = false;
   userName = signal('User');
+  userImg = signal('/default-user.webp');
   showLogoutModal = false;
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -35,8 +36,11 @@ export class Sidebar implements OnInit {
   ngOnInit() {
     this.authService.getUser().subscribe({
       next: (user: any) => {
-        console.log("User is: ", user.roles);
+        console.log("User is: ", user);
         this.userName.set(user.name);
+        if (user.media) {
+          this.userImg.set(`http://localhost:8080${user.media}`);
+        }
       },
       error: () => {
         this.userName.set('User');
