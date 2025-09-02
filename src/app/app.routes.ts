@@ -8,6 +8,7 @@ import { authGuard } from "../app/core/guards/auth.guard"
 import { LayoutComponent } from './core/layout/layout';
 import { Attendance } from './features/attendance/attendance';
 import { Settings } from './features/settings/settings';
+import { Payroll } from './features/payroll/payroll';
 
 export const routes: Routes = [
   {
@@ -25,7 +26,8 @@ export const routes: Routes = [
       {path: 'dashboard', component: Dashboard},
       {path: 'employees', component: Employees},
       {path: 'attendance', component: Attendance},
-      {path: 'settings', component: Settings}
+      {path: 'settings', component: Settings},
+      {path: 'payroll', component: Payroll}
     ]
   }
 ];

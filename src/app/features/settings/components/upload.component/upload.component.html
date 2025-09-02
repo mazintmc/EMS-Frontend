@@ -1,0 +1,37 @@
+<div class="upload-card">
+  <div class="image-previews">
+    <div class="image-preview">
+      <img 
+      [src]="imageUrl" 
+      alt="Current image"
+      [class.dimmed]="previewUrl"
+       />
+    </div>
+
+    @if (previewUrl) {
+      <div class="image-preview">
+        <img [src]="previewUrl" alt="Preview image" class="fade-in" />
+      </div>
+    }
+  </div>
+
+  <div class="upload-controls">
+    <label class="file-input">
+      <input type="file" (change)="onFileSelected($event)" />
+      Choose File
+    </label>
+
+    <button
+      class="btn-upload"
+      type="button"
+      (click)="uploadImage()"
+      [disabled]="!selectedFile || uploading"
+    >
+      {{ uploading ? "Uploading..." : "Upload" }}
+    </button>
+  </div>
+
+  @if (uploadedPath) {
+    <p class="upload-status">Uploaded to</p>
+  }
+</div>

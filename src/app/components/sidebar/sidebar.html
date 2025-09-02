@@ -16,12 +16,14 @@
         <span>Dashboard</span>
       </a>
     </li>
+    @if(hasManager || hasHR) {
     <li>
       <a routerLink="/employees" routerLinkActive="active">
         <i class="fas fa-users"></i>
         <span>Employees</span>
       </a>
     </li>
+  }
     <li>
       <a routerLink="/projects" routerLinkActive="active">
         <i class="fas fa-briefcase"></i>
@@ -35,11 +37,19 @@
       </a>
     </li>
     <li>
+      <a routerLink="/payroll" routerLinkActive="active">
+        <i class="fas fa-money-bill-wave"></i>
+        <span>Payroll</span>
+      </a>
+    </li>
+    @if(hasHR) {
+    <li>
       <a routerLink="/salaries" routerLinkActive="active">
         <i class="fas fa-money-bill-wave"></i>
         <span>Salaries</span>
       </a>
     </li>
+  }
     <li>
       <a routerLink="/reports" routerLinkActive="active">
         <i class="fas fa-chart-bar"></i>
@@ -58,7 +68,7 @@
   
   <div class="user-profile">
   <div class="avatar">
-    <img src="{{ userImg() }}" alt="User">
+   <img [src]="userImg()" alt="User">
   </div>
   <div class="user-info">
     <strong>Welcome {{ userName() }}</strong>

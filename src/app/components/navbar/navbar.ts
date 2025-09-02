@@ -17,11 +17,8 @@ export class Navbar implements OnInit {
     ngOnInit() {
     this.authService.getUser().subscribe({
       next: (user: any) => {
-        console.log("User is: ", user.roles);
         this.userName.set(user.name);
         if (user.media) {
-          console.log("This runs");
-          console.log("Media: ", user.media);
           this.userImg.set(`http://localhost:8080${user.media}`);
         }
       },

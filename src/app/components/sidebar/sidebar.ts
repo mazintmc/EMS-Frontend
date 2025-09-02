@@ -13,6 +13,8 @@ export class Sidebar implements OnInit {
   isCollapsed = false;
   userName = signal('User');
   userImg = signal('/default-user.webp');
+  hasManager!: boolean;
+  hasHR!: boolean;
   showLogoutModal = false;
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -41,6 +43,9 @@ export class Sidebar implements OnInit {
         if (user.media) {
           this.userImg.set(`http://localhost:8080${user.media}`);
         }
+       const roleSet = new Set(user.roles.map((r: { authority: string }) => r.authority));
+       this.hasManager = roleSet.has('ROLE_MANAGER');
+       this.hasHR = roleSet.has('ROLE_HR_ADMIN');
       },
       error: () => {
         this.userName.set('User');

@@ -1,3 +1,78 @@
 <app-feature-wrapper>
-    <app-upload [employeeId]="user_id()"></app-upload>
+  <div class="settings-container">
+
+    <!-- Header -->
+    <div class="settings-header">
+      <div class="user-info">
+        <h2>{{ formData.firstName }} {{ formData.lastName }}</h2>
+        <p>{{ formData.email }}</p>
+      </div>
+      <p>Update your profile picture</p>
+      <div class="form-field full-width">
+        <app-upload [employeeId]="user_id()" [imageUrl]="user_img()"></app-upload>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="settings-tabs">
+      <button 
+        *ngFor="let tab of ['personal','password']"
+        (click)="setTab(tab)"
+        [ngClass]="{active: activeTab === tab}">
+        {{ tab === 'personal' ? 'Personal Information' : tab | titlecase }}
+      </button>
+    </div>
+
+    <!-- Tab Content -->
+
+    <!-- Personal Info Form -->
+    <form *ngIf="activeTab === 'personal'" #personalForm="ngForm" class="settings-form" (ngSubmit)="saveChanges(personalForm)">
+      <div class="tab-content">
+        <div class="form-field">
+          <label>First Name</label>
+          <input [(ngModel)]="formData.firstName" name="firstName" required placeholder="Enter first name" />
+        </div>
+
+        <div class="form-field">
+          <label>Last Name</label>
+          <input [(ngModel)]="formData.lastName" name="lastName" required placeholder="Enter last name" />
+        </div>
+
+        <div class="form-field">
+          <label>Email</label>
+          <input [(ngModel)]="formData.email" name="email" type="email" required placeholder="Enter email" />
+        </div>
+
+        <div class="form-field">
+          <label>Phone</label>
+          <input [(ngModel)]="formData.phone" name="phone" placeholder="Enter phone" />
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button [disabled]="!personalForm.valid" type="submit" class="btn-primary">Save Changes</button>
+      </div>
+    </form>
+
+    <!-- Password Form -->
+    <form *ngIf="activeTab === 'password'" #passwordForm="ngForm" class="settings-form" (ngSubmit)="saveChanges(passwordForm)">
+      <div class="tab-content">
+        <div class="form-field">
+          <label>Old Password</label>
+          <input [(ngModel)]="formData.oldPassword" name="oldPassword" required type="password" placeholder="Enter current password" />
+        </div>
+
+        <div class="form-field">
+          <label>New Password</label>
+          <input [(ngModel)]="formData.newPassword" name="newPassword" required minlength="6" type="password" placeholder="Enter new password" />
+        </div>
+        <p class="password-hint">Password must be at least 6 characters.</p>
+      </div>
+
+      <div class="form-actions">
+        <button [disabled]="!passwordForm.valid" type="submit" class="btn-primary">Save Changes</button>
+      </div>
+    </form>
+
+  </div>
 </app-feature-wrapper>
