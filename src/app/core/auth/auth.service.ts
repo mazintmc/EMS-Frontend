@@ -20,7 +20,7 @@ export class AuthService {
   }
 
   getUser(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/employees/me`).pipe(
+    return this.http.get(`${this.baseUrl}/employees/role`).pipe(
       tap((user) => this.setUser(user))
     );
   }

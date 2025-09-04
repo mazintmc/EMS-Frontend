@@ -9,6 +9,9 @@
     </div>
 
     @if (previewUrl) {
+      <span class="icon-container">
+        <i class="fa-solid fa-arrow-right"></i>
+      </span>
       <div class="image-preview">
         <img [src]="previewUrl" alt="Preview image" class="fade-in" />
       </div>
@@ -30,8 +33,4 @@
       {{ uploading ? "Uploading..." : "Upload" }}
     </button>
   </div>
-
-  @if (uploadedPath) {
-    <p class="upload-status">Uploaded to</p>
-  }
 </div>

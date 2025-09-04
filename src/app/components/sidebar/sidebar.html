@@ -79,15 +79,16 @@
 </div>
 
 <!-- 🔹 Logout Confirmation Modal -->
-@if(showLogoutModal) {<div class="modal-overlay" >
-  <div class="modal">
-    <h3 class="modal-text">Confirm Logout</h3>
-    <p class="modal-text">Are you sure you want to logout?</p>
-    <div class="modal-actions">
-      <button class="btn btn-cancel" (click)="closeLogoutModal()">Cancel</button>
-      <button class="btn btn-confirm" (click)="confirmLogout()">Logout</button>
+@if(showLogoutModal) {
+  <div class="modal-overlay" >
+    <div class="modal">
+      <h3 class="modal-text">Confirm Logout</h3>
+      <p class="modal-text">Are you sure you want to logout?</p>
+      <div class="modal-actions">
+        <button class="btn btn-cancel" (click)="closeLogoutModal()">Cancel</button>
+        <button class="btn btn-confirm" (click)="confirmLogout()">Logout</button>
+      </div>
     </div>
   </div>
-</div>
 }
 </aside>

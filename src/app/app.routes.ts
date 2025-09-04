@@ -9,6 +9,7 @@ import { LayoutComponent } from './core/layout/layout';
 import { Attendance } from './features/attendance/attendance';
 import { Settings } from './features/settings/settings';
 import { Payroll } from './features/payroll/payroll';
+import { Projects } from './features/projects/projects';
 
 export const routes: Routes = [
   {
@@ -27,7 +28,8 @@ export const routes: Routes = [
       {path: 'employees', component: Employees},
       {path: 'attendance', component: Attendance},
       {path: 'settings', component: Settings},
-      {path: 'payroll', component: Payroll}
+      {path: 'payroll', component: Payroll},
+      {path: 'projects', component: Projects}
     ]
   }
 ];

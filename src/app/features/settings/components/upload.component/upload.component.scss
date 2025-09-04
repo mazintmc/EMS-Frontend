@@ -16,6 +16,9 @@
   .dimmed {
     opacity: 0.5;
   }
+  .icon-container {
+    padding-top: 50px;
+  }
 
   .image-preview {
     width: 120px;
@@ -94,5 +97,12 @@
   .upload-status {
     font-size: 0.85rem;
     color: #059669;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .icon-container {
+    visibility: hidden;
+    position: absolute; 
   }
 }
